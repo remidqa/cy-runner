@@ -1,11 +1,22 @@
 const fastify = require('fastify')({ logger: true })
 const { runCypress } = require("./functions/cy.js")
-const { sendResultsToApiQa } = require("./functions/reports.js")
+const { getReports, getReport, deleteReport } = require("./functions/reports.js")
+
+fastify.get('/reports/app/:app', async (req, rep) => {
+    return getReports(req.params.app)
+})
 
 fastify.post('/run/app/:app', async (req, rep) => {
-    let cyResults = await runCypress(req.params.app);
-    let postedResults = await sendResultsToApiQa(cyResults)
-    return postedResults
+    let cyRun = await runCypress(req.params.app);
+    return cyRun
+})
+
+fastify.get('/report/report_name/:report_name', async (req, rep) => {
+    return getReport(req.params.report_name)
+})
+
+fastify.delete('/report/report_name/:report_name', async (req, rep) => {
+    return deleteReport(req.params.report_name)
 })
 
 // Run the server!

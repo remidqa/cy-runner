@@ -19,7 +19,7 @@ RUN npm install cypress --save-dev
 
 COPY . .
 
-RUN npm install cypress-mochawesome-reporter fastify glob-fs mochawesome-merge
+RUN npm install cypress-mochawesome-reporter fastify glob-fs glob mochawesome-merge
 
 CMD ["node","server.js"]
 
