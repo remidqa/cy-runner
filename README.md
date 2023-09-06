@@ -7,7 +7,7 @@
 
 ## What is this application for
 A simple application to run cypress executions
-A server listen to 1 ```GET```, 1 ```POST``` and 1 ```DELETE``` route to manage execution reports
+A server listen to 2 ```GET```, 1 ```POST``` and 1 ```DELETE``` route to manage execution reports
 
 ## Setup
 You need to use some ```Docker Volume```
