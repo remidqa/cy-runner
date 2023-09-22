@@ -24,3 +24,11 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     // failing the test
     return false
 })
+
+let generateData = require('./generate/datas')
+let generateUrls = require('./generate/urls')
+
+beforeEach(() => {
+    let datas = generateData(Cypress.env('env')); cy.wrap(datas, {log: false}).as('datas')
+    let urls = generateUrls(Cypress.env('env')); cy.wrap(urls, {log: false}).as('urls')
+})

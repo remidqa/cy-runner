@@ -6,8 +6,10 @@ fastify.get('/reports/app/:app', async (req, rep) => {
     return getReports(req.params.app)
 })
 
-fastify.post('/run/app/:app', async (req, rep) => {
-    let cyRun = await runCypress(req.params.app);
+fastify.post('/run', async (req, rep) => {
+    let app = req.body.app
+    let env = req.body.env
+    let cyRun = await runCypress(app, env);
     return cyRun
 })
 
