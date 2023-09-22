@@ -1,8 +1,10 @@
 {
     "front-qa": {
-        "uat": "http://front.localhost"
+        "uat": "http://front-qa:5000",
+        "int": "http://front.localhost"
     },
     "api-qa": {
-        "uat": "http://api.localhost"
+        "uat": "http://api-qa:5020",
+        "int": "http://api.localhost"
     }
 }
