@@ -27,3 +27,9 @@
 Cypress.Commands.add("cyId", (cyId) => {
     return cy.get(`[cy-id='${cyId}']`)
 })
+
+Cypress.Commands.add('open', (app) => {
+    return cy.get('@urls', {log: false}).then((urls) => {
+        return cy.visit(urls[app])
+    })
+})

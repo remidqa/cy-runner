@@ -4,14 +4,14 @@ const { exec } = require("child_process");
 
 
 module.exports = {
-    runCypress: async (app) => {
+    runCypress: async (app, env) => {
         return new Promise(async (res, rej) => {
             let filesState = filesExists(app);
             if (filesState) {
-                let reportName = `${app}_${Date.now()}`
+                let reportName = `${app}_${env}_${Date.now()}`
                 let reportFolder = `cypress/reports/${reportName}`
                 fs.mkdirSync(reportFolder);
-                exec(`npx cypress run --spec 'cypress/e2e/${app}/*.cy.js' --reporter mochawesome --reporter-options reportDir='${reportFolder}',reportFilename='[status]_[datetime]-[name]-report'`, (err, stdout, stderr) => {
+                exec(`npx cypress run --spec 'cypress/e2e/${app}/*.cy.js' --env env=${env} --reporter mochawesome --reporter-options reportDir='${reportFolder}',reportFilename='[status]_[datetime]-[name]-report'`, (err, stdout, stderr) => {
                     exec(`npx mochawesome-merge ${reportFolder}/*.json -o cypress/reports/${reportName}.json`, (err, stdout, stderr) => {
                         fs.rmSync(reportFolder, {force: true, recursive: true})
                         res({
