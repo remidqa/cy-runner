@@ -15,11 +15,10 @@ RUN apt-get -y install xvfb \
 
 WORKDIR /app
 
-RUN npm install cypress --save-dev
-
 COPY . .
 
-RUN npm install cypress-mochawesome-reporter fastify glob-fs glob mochawesome-merge
+RUN npm install
+RUN npm install cypress --save-dev
 
 CMD ["node","server.js"]
 
