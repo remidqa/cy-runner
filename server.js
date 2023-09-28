@@ -1,12 +1,17 @@
 const fastify = require('fastify')({ logger: true })
 const { runCypress } = require("./functions/cy.js")
 const { getReports, getReport, deleteReport } = require("./functions/reports.js")
+const { getTests } = require("./functions/tests.js")
 
 fastify.post('/run', async (req, rep) => {
     let app = req.body.app
     let env = req.body.env
     let cyRun = await runCypress(app, env);
     return cyRun
+})
+
+fastify.get('/tests/app/:app', async (req, rep) => {
+    return getTests(req.params.app)
 })
 
 fastify.get('/report/folder/:folder/report_name/:report_name', async (req, rep) => {
