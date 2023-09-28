@@ -9,6 +9,8 @@ module.exports = defineConfig({
   config: {
     chromeWebSecurity: false,
     experimentalModifyObstructiveThirdPartyCode: true,
+    video: false,
+    screenshotOnRunFailure: false
   },
   e2e: {
     setupNodeEvents(on, config) {
