@@ -11,7 +11,7 @@ module.exports = {
                 let reportName = `${app}_${env}_${Date.now()}`
                 let reportFolder = `cypress/reports/${reportName}`
                 fs.mkdirSync(reportFolder);
-                exec(`npx cypress run --spec 'cypress/e2e/${app}/*.cy.js' --env env=${env} --reporter mochawesome --reporter-options html=false,reportDir='${reportFolder}',reportFilename='[status]_[name]-report'`, (err, stdout, stderr) => {
+                exec(`npx cypress run --spec 'cypress/e2e/${app}/*.cy.js' --config videoRecording=false,screenshotOnRunFailure=false --env env=${env} --reporter mochawesome --reporter-options html=false,reportDir='${reportFolder}',reportFilename='[status]_[name]-report'`, (err, stdout, stderr) => {
                     let reports = fs.readdirSync(reportFolder)
                     reports.forEach((report, i) => { reports[i] = report.slice(0, report.length - '.json'.length) })
                     res({
